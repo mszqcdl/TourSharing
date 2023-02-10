@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="CSS/Index.css"/>
+    <link rel="stylesheet" href="CSS/Button_model.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        html{
+            background-image: url(BG.jpg);
+        }
+    </style>
+</head>
+<body>
+
+<div id="login-box">
+    <h1>Welcome to TourShare!</h1>
+    <form action="RegisterServlet" method="post">
+        <div class="form">
+            <div class="item">
+                <i class="fa fa-github-alt" style="font-size:24px"></i>
+                <input id = "urn" type="text" name="Username" placeholder="Username" required/>
+            </div>
+            <div class="item">
+                <i class="fa fa-search" style="font-size:24px"></i>
+                <input id = "psw" type="password" name="Password" placeholder="Password" onkeyup="checkPswValid()" required/>
+            </div>
+            <div class="item">
+                <i class="fa fa-search" style="font-size:24px"></i>
+                <input id = "psw1" type="password" name="Password" placeholder="Re-enter password" onkeyup="checkPassword()" required/>
+            </div>
+            <span id="warn"></span></input>
+        </div>
+        <input id = 'confirm' type = "submit" value = "Confirm" class = "button1">
+    </form>
+    <input type = "button" value = "Cancel" class = "button1" onclick="cancel()">
+
+    <div id = "hint" class = "hint"></div>
+</div>
+
+<script type="text/javascript">
+    /*cancel*/
+    function cancel(){
+        window.location.href = "Login.html";
+    }
+    function checkPswValid(){
+        var password=document.getElementById("psw").value.toString();
+        if (password.length<=6){
+            document.getElementById("warn").innerHTML="<br><font color='red'>The password should be more than 6 digits!</font>";
+            document.getElementById("confirm").disabled = true;
+        }
+        else {
+            document.getElementById("warn").innerHTML="<br><font color='green'></font>";
+            document.getElementById("confirm").disabled = false;
+        }
+    }
+    function checkPassword() {
+        var password=document.getElementById("psw").value;
+        var password1=document.getElementById("psw1").value;
+        if(password != password1) {
+            document.getElementById("warn").innerHTML="<br><font color='red'>The two passwords are different!</font>";
+            document.getElementById("confirm").disabled = true;
+        }
+        else{
+            document.getElementById("warn").innerHTML="<br><font color='green'></font>";
+            document.getElementById("confirm").disabled = false;
+        }
+    }
+</script>
+</body>
+</html>

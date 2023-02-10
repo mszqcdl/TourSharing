@@ -1,0 +1,40 @@
+.button1{
+	margin-top: 5px;
+    width: 80px; /* 宽度 */
+	height: 30px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 1px; /* 边框半径 */
+	background: #4cd374; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */
+    opacity: 0.6; /*透明度设置*/
+}
+
+.button1:hover{
+    background: #407c6a; /* 背景颜色 */
+    transition: transform 2s;
+}
+
+.button2{
+	margin-top: 5px;
+	width: 180px; /* 宽度 */
+	height: 30px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 9px; /* 边框半径 */
+	background: #edf6ee; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: 'Lato'; /* 设置字
+	体 */
+	color: #5e7798; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */
+	opacity: 0.5; /*透明度设置*/
+}
+
+.button2:hover{
+	background: #407c6a; /* 背景颜色 */
+	transition: transform 2s;
+}

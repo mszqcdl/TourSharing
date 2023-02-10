@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+.left{
+    position:absolute;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 290px;
+    height: 98%;
+    background-color: rgb(121, 121, 199);
+}
+
+.right{
+    position:absolute;
+    margin-left: 300px;
+    margin-top: 5px;
+    width: 1160px;
+    height: 98%;
+}

@@ -136,5 +136,4 @@
 
     </div>
 </body>
-<%--<script src="content.js"></script>--%>
 </html>

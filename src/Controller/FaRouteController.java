@@ -1,6 +1,7 @@
 package Controller;
 
 import Entity.FaRoute;
+import Entity.Route;
 import db.DBConnect;
 
 import java.sql.PreparedStatement;
@@ -15,11 +16,12 @@ public class FaRouteController {
         dbc = new DBConnect() ;
     }
 
-    public ArrayList<FaRoute> searchUser(String idUser){
-        ArrayList<FaRoute> routes = new ArrayList<FaRoute>();
+    public ArrayList<Route> searchUser(String idUser){
+        ArrayList<Route> routes = new ArrayList<Route>();
         // TODO Auto-generated method stub
-        String sql = "select * from Favourite where User_idUser = '"+idUser+"';";
+        String sql = "select * from route where idRoute in (select Route_idRoute from favourite where User_idUser='"+idUser+"');";
         PreparedStatement pstmt = null ;
+        System.out.println("查找用户id为...的收藏"+idUser);
 
 
         // database
@@ -30,7 +32,7 @@ public class FaRouteController {
             ResultSet rs = pstmt.executeQuery();
             boolean res = false;
             while(rs.next()){
-                FaRoute route  = new FaRoute(rs.getString("User_idUser"),rs.getString("Route_idRoute"));
+                Route route  = new Route(rs.getString("idRoute"),rs.getString("routeName"),rs.getString("location"),rs.getString("User_idUser"),rs.getString("description"));
                 routes.add(route);
             }
             rs.close() ;
@@ -42,6 +44,33 @@ public class FaRouteController {
             return null;
         }
         return routes;
+    }
+
+    public boolean searchFaRoute(String idUser,String idRoute){
+        ArrayList<Route> routes = new ArrayList<Route>();
+        // TODO Auto-generated method stub
+        //select * from favourite where User_idUser='Cecilia' and Route_idRoute='1001CN';
+        String sql = "select * from favourite where User_idUser='"+idUser+"' and Route_idRoute='"+idRoute+"';";
+        PreparedStatement pstmt = null ;
+        boolean exist=false;
+
+
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            // search
+            ResultSet rs = pstmt.executeQuery();
+            boolean res = false;
+            while(rs.next()){
+                exist=true;
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return exist;
     }
 
 
@@ -62,10 +91,27 @@ public class FaRouteController {
         }
     }
 
-    //Delete favourite route
+    //Delete favourite route by ids
     public boolean deleteRoute(FaRoute faRoute){
         //DELETE FROM `journey`.`favourite` WHERE (`Route_idRoute` = '1001CN') and (`User_idUser` = 'User');
         String sql = "DELETE FROM `journey`.`favourite` WHERE (`Route_idRoute` = '"+faRoute.getIdRoute()+"') and (`User_idUser` = '"+faRoute.getIdUser()+"');";
+        PreparedStatement pstmt = null ;
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            pstmt.executeUpdate();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    //Delete favourite route by rid
+    public boolean deleteRouterid(String rid){
+        //DELETE FROM `journey`.`favourite` WHERE (`Route_idRoute` = '1001CN') and (`User_idUser` = 'User');
+        String sql = "DELETE FROM `journey`.`favourite` WHERE `Route_idRoute` = '"+rid+"';";
         PreparedStatement pstmt = null ;
         // database
         try{

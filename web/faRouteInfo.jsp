@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 王艺璇
+  Date: 2023/3/13
+  Time: 11:43
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="Controller.ExtractPoints" %>
 <%@ page import="Controller.RouteController" %>
 <%@ page import="Entity.Route" %>
@@ -91,18 +98,18 @@
             }
 
         }
-        function favourite(){
+        function deleteFR(){
             <%Login login = new Login();
             FaRouteController faRouteController = new FaRouteController();
             if (login.getUserID()==null){%>
             alert("Guests cannot access this part. Please log in.");
             <%
             }
-            else if(faRouteController.searchFaRoute(login.getUserID(),request.getQueryString())){%>
-            alert("The route has been in the favourite list.");
-        <%} else{
-                faRouteController.addRoute(new FaRoute(login.getUserID(),request.getQueryString()));
-            }%>
+            else if(faRouteController.searchFaRoute(login.getUserID(),request.getQueryString())==false){%>
+            alert("There is no such route in the favourite list.");
+            <%} else{
+                    faRouteController.deleteRoute(new FaRoute(login.getUserID(),request.getQueryString()));
+                }%>
         }
 
     </script>
@@ -131,7 +138,7 @@
                 <br>
                 <%=session.getAttribute("description")%>
                 <br>
-                <input id="addFaList" type = "button" value = "Add to Favourite List" class = "button2" onclick="favourite()">
+                <input id="addFaList" type = "button" value = "Delete" class = "button2" onclick="deleteFR()">
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>
@@ -140,3 +147,4 @@
 
 </body>
 </html>
+

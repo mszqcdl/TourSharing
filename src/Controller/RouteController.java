@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.Route;
 import db.DBConnect;
+import db.Login;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class RouteController {
         // TODO Auto-generated method stub
         String sql = "select * from Route;";
         PreparedStatement pstmt = null ;
+        System.out.println(new Login().getUserID());
         // database
         try{
             // connect
@@ -32,8 +34,8 @@ public class RouteController {
             while(rs.next()){
                 Route route  = new Route(rs.getString("idRoute"),rs.getString("routeName"),rs.getString("location"),rs.getString("User_idUser"),rs.getString("description"));
                 routes.add(route);
-                System.out.println(route);
-                System.out.println(route.getIdRoute());
+//                System.out.println(route);
+//                System.out.println(route.getIdRoute());
             }
             rs.close() ;
             pstmt.close() ;
@@ -72,6 +74,7 @@ public class RouteController {
         if (routes.size()==0){
             return null;
         }
+        System.out.println(routes.size()+"长度");
         return routes;
     }
 
@@ -79,6 +82,7 @@ public class RouteController {
     public ArrayList<Route> searchLoc(String location){
         ArrayList<Route> routes = new ArrayList<Route>();
         // TODO Auto-generated method stub
+        System.out.println("The loc is "+location);
         String sql = "select * from Route where location = '"+location+"';";
         PreparedStatement pstmt = null ;
 
@@ -102,6 +106,56 @@ public class RouteController {
             return null;
         }
         return routes;
+    }
+
+    //Id查找路线
+    public Route searchId(String Id){
+        System.out.println(Id+"!!!!!!!!!!!!!!!!!!!!!!!");
+        // TODO Auto-generated method stub
+        Route route = null;
+        String sql = "select * from Route where idRoute = '"+Id+"';";
+        PreparedStatement pstmt = null ;
+
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            // search
+            ResultSet rs = pstmt.executeQuery();
+            boolean res = false;
+            while(rs.next()){
+                route  = new Route(Id,rs.getString("routeName"),rs.getString("location"),rs.getString("User_idUser"),rs.getString("description"));
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return route;
+    }
+    //two ids查找路线
+    public boolean searchIds(String uid,String Id){
+        // TODO Auto-generated method stub
+        boolean exist=false;
+        String sql = "select * from Route where idRoute = '"+Id+"' and User_idUser='"+uid+"';";
+        PreparedStatement pstmt = null ;
+
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            // search
+            ResultSet rs = pstmt.executeQuery();
+            boolean res = false;
+            while(rs.next()){
+                exist=true;
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return exist;
     }
 
     //Add route

@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login {
-    private String userID = null;
+    private static String userID = null;
 
     public String getUserID() {
+        System.out.println(userID);
         return userID;
     }
 
@@ -23,6 +24,7 @@ public class Login {
         String sql = "select * from User where idUser = '"+inputUrn+"';";
         PreparedStatement pstmt = null ;
         DBConnect dbc = null;
+        System.out.println("登录用户为"+inputUrn);
 
         // 下面是针对数据库的具体操作
         try{
@@ -40,6 +42,7 @@ public class Login {
                     userID = inputUrn;
                 }
             }
+            System.out.println("成功登录用户id"+new Login().getUserID());
             rs.close() ;
             pstmt.close() ;
         }catch (SQLException e){
@@ -67,5 +70,8 @@ public class Login {
         if (pw.equals(result))
             return true;
         return false;
+    }
+    public void logout(){
+        userID=null;
     }
 }

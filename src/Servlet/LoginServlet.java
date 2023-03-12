@@ -1,10 +1,6 @@
 package Servlet;
-import Controller.ExtractPoints;
 import Controller.RouteController;
 import Entity.Route;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import db.Login;
 
 import javax.servlet.ServletException;
@@ -32,11 +28,11 @@ public class LoginServlet extends HttpServlet {
         int result = 0;
         if(urn.equals("")){
             HttpSession session=req.getSession();
-            res.getWriter().print("<script language=javascript>alert('The username is empty! ');window.location='./Login.html'</script>");
+            res.getWriter().print("<script language=javascript>alert('The username is empty! ');window.location='./Login.jsp'</script>");
         }
         else if(pwd.equals("")){
             HttpSession session=req.getSession();
-            res.getWriter().print("<script language=javascript>alert('The password is empty! ');window.location='./Login.html'</script>");
+            res.getWriter().print("<script language=javascript>alert('The password is empty! ');window.location='./Login.jsp'</script>");
         }
         else{
             try{
@@ -44,12 +40,11 @@ public class LoginServlet extends HttpServlet {
                 result = log.login(urn,pwd);
                 if (result==0){
                     HttpSession session=req.getSession();
-                    res.getWriter().print("<script language=javascript>alert('The password or user name is wrong! ');window.location='./Login.html'</script>");
+                    res.getWriter().print("<script language=javascript>alert('The password or user name is wrong! ');window.location='./Login.jsp'</script>");
                 }
                 else if (result==1){
                     HttpSession session=req.getSession();
-                    MapServlet mapServlet = new MapServlet();
-                    String message = "Hello World!";
+
                     /*传输到routeInfo的信息*/
 //                    ExtractPoints extractPoints = new ExtractPoints("");
 //                    session.setAttribute("message", message);

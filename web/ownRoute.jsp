@@ -4,6 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controller.RouteController" %>
 <%@page import= "com.alibaba.fastjson.JSONObject"%>
+<%@ page import="db.Login" %>
 <!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
 <html>
 <head>
@@ -23,23 +24,39 @@
     <link rel="stylesheet" href="CSS/content.css">
     <link rel="stylesheet" href="CSS/Button_model.css"/>
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <%
-        String locations = (String) session.getAttribute("locations");
-        JSONObject json1 = new JSONObject();
-        json1.put("locations", locations);
-        String ids = (String) session.getAttribute("ids");
-        JSONObject json2 = new JSONObject();
-        json2.put("ids", ids);
-        String names = (String) session.getAttribute("names");
-        JSONObject json3 = new JSONObject();
-        json2.put("names", names);
-        String descriptions = (String) session.getAttribute("descriptions");
-        JSONObject json4 = new JSONObject();
-        json2.put("descriptions", descriptions);
-    %>
+
     <script type="text/javascript" >
 
         function initialize() {
+            <%RouteController routeController = new RouteController();
+                    //session.setAttribute("routes",routeController.searchAll());
+                    Login login = new Login();
+                    ArrayList<Route> routes = routeController.searchUser(login.getUserID());
+                    String locations = "";
+                    String ids = "";
+                    String names = "";
+                    String descriptions = "";
+                    if (routes==null){
+                        session.setAttribute("names","");
+                        session.setAttribute("ids","");
+                        session.setAttribute("descriptions","");
+                        session.setAttribute("locations","");
+                    }
+                    else{
+                        for (int i=0;i<routes.size();i++){
+                            locations = locations+routes.get(i).getLocation()+",";
+                            ids = ids+routes.get(i).getIdRoute()+",";
+                            names = names+routes.get(i).getRouteName()+",";
+                            descriptions = descriptions+routes.get(i).getDescription()+",,";
+                            //routes[i] = new Route(routes.get(i).getIdRoute(),routesList.get(i).getRouteName(),routesList.get(i).getLocation(),routesList.get(i).getIdUser(),routesList.get(i).getDescription());
+                        }
+                        session.setAttribute("names",names.substring(0,names.length()-1));
+                        session.setAttribute("ids",ids.substring(0,ids.length()-1));
+                        session.setAttribute("descriptions",descriptions.substring(0,descriptions.length()-1));
+                        session.setAttribute("locations",locations.substring(0,locations.length()-2));
+                    }
+
+            %>
 
             var tmp =  "<%=locations%>";
             var loc = tmp.split(',');
@@ -51,7 +68,7 @@
             var des = tmp.split(',,');
             let containerResult = document.getElementById("containerResult");
 
-            for (let i = 0; i < loc.length; i++) {
+            for (let i = 0; i < loc.length-1; i++) {
                 route = new Object();
                 route.rid = id[i];
                 route.name = name[i];
@@ -70,7 +87,7 @@
 
             let boxLink = document.createElement("a");
             // boxLink.href = '#'
-            boxLink.href = "/routeInfo.jsp" + route.rid;
+            boxLink.href = "/TourSharing_war_exploded/ownRouteInfo.jsp?" + route.rid;
             // console.log('link=>' + boxLink);
 
 
@@ -115,7 +132,7 @@
 <body onload="initialize()">
 <div id="1"></div>
 <script>
-    load("header.html");
+    load("header.jsp");
     function load(url)
     {
         req = new XMLHttpRequest();
@@ -134,5 +151,4 @@
 
 </div>
 </body>
-<%--<script src="content.js"></script>--%>
 </html>

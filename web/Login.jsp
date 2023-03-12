@@ -1,3 +1,4 @@
+<%@ page import="db.Login" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
             background-image: url(BG.jpg);
         }
     </style>
+    <%new Login().logout();%>
 </head>
 <body>
 

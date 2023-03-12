@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet{
                 String sqlAdd = "INSERT INTO `journey`.`user` (`idUser`, `password`) VALUES ( '"+urn+ "','" + pwdDB + "');";
                 pstmt = dbc.getConnection().prepareStatement(sqlAdd) ;
                 pstmt.executeUpdate();
-                res.getWriter().print("<script language=javascript>alert('Successfully register');window.location='./Login.html'</script>");
+                res.getWriter().print("<script language=javascript>alert('Successfully register');window.location='./Login.jsp'</script>");
             }
             rs.close() ;
             pstmt.close() ;

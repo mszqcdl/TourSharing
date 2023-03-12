@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 王艺璇
+  Date: 2023/3/13
+  Time: 11:47
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="Controller.ExtractPoints" %>
 <%@ page import="Controller.RouteController" %>
 <%@ page import="Entity.Route" %>
@@ -91,20 +98,22 @@
             }
 
         }
-        function favourite(){
+        function deleteR(){
             <%Login login = new Login();
-            FaRouteController faRouteController = new FaRouteController();
+            RouteController routeController1 = new RouteController();
             if (login.getUserID()==null){%>
             alert("Guests cannot access this part. Please log in.");
             <%
             }
-            else if(faRouteController.searchFaRoute(login.getUserID(),request.getQueryString())){%>
-            alert("The route has been in the favourite list.");
-        <%} else{
-                faRouteController.addRoute(new FaRoute(login.getUserID(),request.getQueryString()));
-            }%>
+            else if(routeController1.searchIds(login.getUserID(),request.getQueryString())==false){%>
+            alert("You didin't create such route!");
+            <%} else{
+                    routeController.deleteRoute(request.getQueryString());
+                    FaRouteController faRouteController = new FaRouteController();
+                    faRouteController.deleteRouterid(request.getQueryString());
+                }%>
         }
-
+        function modify(){}
     </script>
 </head>
 
@@ -131,7 +140,8 @@
                 <br>
                 <%=session.getAttribute("description")%>
                 <br>
-                <input id="addFaList" type = "button" value = "Add to Favourite List" class = "button2" onclick="favourite()">
+                <input id="addFaList" type = "button" value = "Delete" class = "button2" onclick="deleteR()">
+                <input type="button" value="Modify" class="button2" onclick="modify()">
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>

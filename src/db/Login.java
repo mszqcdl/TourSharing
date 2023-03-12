@@ -7,7 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login {
-//    public static void main() throws Exception {
+    private String userID = null;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    //    public static void main() throws Exception {
 //        Login login = new Login();
 //        System.out.println(login.login("Cecilia","1234567"));
 //    }
@@ -29,8 +35,10 @@ public class Login {
             if(rs.next()){
                 String dbPwd = rs.getString("password");
                 res = checkPwd(dbPwd,inputPwd);
-                if(res)
+                if(res) {
                     flag = 1;//Ture
+                    userID = inputUrn;
+                }
             }
             rs.close() ;
             pstmt.close() ;

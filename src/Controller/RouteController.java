@@ -16,6 +16,35 @@ public class RouteController {
     public RouteController() throws SQLException{
         dbc = new DBConnect() ;
     }
+    //查找所有路线
+    public ArrayList<Route> searchAll(){
+        ArrayList<Route> routes = new ArrayList<Route>();
+        // TODO Auto-generated method stub
+        String sql = "select * from Route;";
+        PreparedStatement pstmt = null ;
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            // search
+            ResultSet rs = pstmt.executeQuery();
+            boolean res = false;
+            while(rs.next()){
+                Route route  = new Route(rs.getString("idRoute"),rs.getString("routeName"),rs.getString("location"),rs.getString("User_idUser"),rs.getString("description"));
+                routes.add(route);
+                System.out.println(route);
+                System.out.println(route.getIdRoute());
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        if (routes.size()==0){
+            return null;
+        }
+        return routes;
+    }
     //用户id查找路线
     public ArrayList<Route> searchUser(String idUser){
         ArrayList<Route> routes = new ArrayList<Route>();

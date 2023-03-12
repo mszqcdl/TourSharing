@@ -46,6 +46,22 @@ h1
     letter-spacing: 1px;
     word-spacing: 2px;
 }
+#loc,#rname{
+    width:160px;
+    font-size:18px;
+    border:30px;
+    padding:3px 10px;
+    background:#ffffff00;
+    color:#fff;
+}
+#des{
+    width:800px;
+    font-size:18px;
+    border:30px;
+    padding:3px 10px;
+    background:#ffffff00;
+    color:#fff;
+}
 h4
 {
     font-size: 15px;

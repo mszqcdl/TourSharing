@@ -1,5 +1,7 @@
 package Entity;
 
+
+
 public class Route {
     private String idRoute;
     private String routeName;
@@ -45,5 +47,20 @@ public class Route {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setIdRoute(String idRoute) {
+        this.idRoute = idRoute;
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "idRoute='" + idRoute + '\'' +
+                ", routeName='" + routeName + '\'' +
+                ", location='" + location + '\'' +
+                ", idUser='" + idUser + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

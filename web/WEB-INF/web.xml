@@ -13,7 +13,7 @@
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
@@ -25,12 +25,19 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>MapServlet</servlet-name>
-        <servlet-class>Servlet.MapServlet</servlet-class>
+        <servlet-name>ContentServlet</servlet-name>
+        <servlet-class>Servlet.ContentServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>MapServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <servlet-name>ContentServlet</servlet-name>
+        <url-pattern>/content</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FaRouteServlet</servlet-name>
+        <servlet-class>Servlet.FaRouteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FaRouteServlet</servlet-name>
+        <url-pattern>/favourite</url-pattern>
     </servlet-mapping>
 </web-app>

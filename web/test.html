@@ -33,15 +33,6 @@
 
                 /* 加载地图 */
         function initialize() {
-            // var latAvg=0.0;
-            // var lngAvg=0.0;
-            // for (var i=0; i<locations.length; i++){
-            //     var loc = locations[i].split(',');
-            //     latAvg+=loc[0];
-            //     lngAvg+=loc[1];
-            // }
-            // latAvg = latAvg/locations.length;
-            // lngAvg = lngAvg/locations.length;
             var latlng = new google.maps.LatLng(31.953313, 121.841581);
             var myOptions = {
                 zoom: 10,    //缩放级别
@@ -95,7 +86,7 @@
             document.getElementById(1).innerHTML = req.responseText;
         }
     </script>
-    <div id="cartMainContainer">
+    <div id="mapMainContainer">
         <!-- JS rendered code -->
         <form action="MapServlet" method="post">
             <div>

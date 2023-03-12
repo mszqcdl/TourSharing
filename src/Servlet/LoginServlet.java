@@ -1,4 +1,10 @@
 package Servlet;
+import Controller.ExtractPoints;
+import Controller.RouteController;
+import Entity.Route;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import db.Login;
 
 import javax.servlet.ServletException;
@@ -8,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -42,8 +50,32 @@ public class LoginServlet extends HttpServlet {
                     HttpSession session=req.getSession();
                     MapServlet mapServlet = new MapServlet();
                     String message = "Hello World!";
-                    session.setAttribute("message", message);
-                    res.sendRedirect("./test.jsp");
+                    /*传输到routeInfo的信息*/
+//                    ExtractPoints extractPoints = new ExtractPoints("");
+//                    session.setAttribute("message", message);
+//                    session.setAttribute("list",extractPoints.getLocations());
+//                    session.setAttribute("avgLat",extractPoints.getA());
+//                    session.setAttribute("avgLon",extractPoints.getB());
+                    RouteController routeController = new RouteController();
+                    //session.setAttribute("routes",routeController.searchAll());
+                    ArrayList<Route> routes = routeController.searchAll();
+                    String locations = "";
+                    String ids = "";
+                    String names = "";
+                    String descriptions = "";
+                    for (int i=0;i<routes.size();i++){
+                        locations = locations+routes.get(i).getLocation()+",";
+                        ids = ids+routes.get(i).getIdRoute()+",";
+                        names = names+routes.get(i).getRouteName()+",";
+                        descriptions = descriptions+routes.get(i).getDescription()+",,";
+                        //routes[i] = new Route(routes.get(i).getIdRoute(),routesList.get(i).getRouteName(),routesList.get(i).getLocation(),routesList.get(i).getIdUser(),routesList.get(i).getDescription());
+                    }
+                    session.setAttribute("names",names.substring(0,names.length()-1));
+                    session.setAttribute("ids",ids.substring(0,ids.length()-1));
+                    session.setAttribute("descriptions",descriptions.substring(0,descriptions.length()-1));
+                    session.setAttribute("locations",locations.substring(0,locations.length()-1));
+                    System.out.println(locations);
+                    res.sendRedirect("./content");
                     //res.getWriter().print("<script language=javascript>window.location='./test.html'</script>");
                 }
             }

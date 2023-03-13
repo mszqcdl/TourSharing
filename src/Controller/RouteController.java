@@ -158,6 +158,35 @@ public class RouteController {
         return exist;
     }
 
+    //search max id
+    public String searchMax(){
+        String id=null;
+        String sql = "select MAX(idRoute) from Route;";
+        PreparedStatement pstmt = null ;
+
+        // database
+        try{
+            // connect
+            pstmt = dbc.getConnection().prepareStatement(sql) ;
+            // search
+            ResultSet rs = pstmt.executeQuery();
+            boolean res = false;
+            while(rs.next()){
+                id = rs.getString("MAX(idRoute)");
+                System.out.println(id);
+                Integer tmp = Integer.parseInt(id);
+                tmp+=1;
+                id = tmp.toString();
+                System.out.println(id);
+            }
+            rs.close() ;
+            pstmt.close() ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
+
     //Add route
     public boolean addRoute(Route route){
         // TODO Auto-generated method stub
@@ -175,7 +204,6 @@ public class RouteController {
             return false;
         }
     }
-
     //Delete route
     public boolean deleteRoute(String idRoute){
         //DELETE FROM `journey`.`Route` WHERE (`idRoute` = '1');

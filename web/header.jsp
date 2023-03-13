@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="CSS/header.css">
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <script>
-        function logout(){
-        }
-        function nullfunc(){}
-    </script>
 </head>
 <body>
 
@@ -28,8 +23,8 @@
             <div id="webName"><a href="./content"> <b>Tour</b>Share </a></div>
             <!-- COLLCETIONS ON WEBSITE -->
             <div id="collection">
-                <div id="faRoutes"><a href="./favourite" onclick="nullfunc()"> FAVOURITE </a></div>
-                <div id="addRoute"><a href="addRoute.html"> CREATE ROUTE </a></div>
+                <div id="faRoutes"><a href="./favourite"> FAVOURITE </a></div>
+                <div id="addRoute"><a href="addRoute.jsp"> CREATE ROUTE </a></div>
 <%--                <a href="addRoute.html"> <i class="fas fa-plus-circle userIcon" title="create new route"></i> </a>--%>
             </div>
             <!-- SEARCH SECTION -->
@@ -40,8 +35,8 @@
             <!-- USER SECTION (CART AND USER ICON) -->
             <div id="user">
 
-                <a href="ownRoute.jsp"> <i class="fas fa-user-circle userIcon" title="home page" onclick="nullfunc()"></i> </a>
-                <a href="Login.jsp"> <i class="fas fa-arrow-circle-right userIcon" title="log out" onclick="logout()"></i> </a>
+                <a href="ownRoute.jsp"> <i class="fas fa-user-circle userIcon" title="home page"></i> </a>
+                <a href="Login.jsp"> <i class="fas fa-arrow-circle-right userIcon" title="log out"></i> </a>
             </div>
         </div>
         </form>

@@ -34,8 +34,12 @@ public class DBConnect {
 
     public static void main(String[] args) throws Exception {
         //DBConnect bd = new DBConnect();
-
-        Login login = new Login();
-        System.out.println(login.login("Cecilia","1234567"));
+//
+//        Login login = new Login();
+//        System.out.println(login.login("Cecilia","1234567"));
+        Integer tmp = Integer.parseInt("1001");
+        Integer tmp1 = Integer.getInteger("1000");
+        System.out.println(tmp);
+        System.out.println(tmp1);
     }
 }

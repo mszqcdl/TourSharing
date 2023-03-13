@@ -113,7 +113,9 @@
                     faRouteController.deleteRouterid(request.getQueryString());
                 }%>
         }
-        function modify(){}
+        function modify(){
+            window.location.href = "modifyRoute.jsp";
+        }
     </script>
 </head>
 
@@ -141,7 +143,8 @@
                 <%=session.getAttribute("description")%>
                 <br>
                 <input id="addFaList" type = "button" value = "Delete" class = "button2" onclick="deleteR()">
-                <input type="button" value="Modify" class="button2" onclick="modify()">
+                <input type="submit" value="Modify" class="button2" onclick="modify()">
+
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>

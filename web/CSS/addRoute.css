@@ -111,6 +111,23 @@ button a:focus
 {
     outline: none;
 }
+#input
+{
+    width: 35em;
+    height: 3em;
+    padding: 2px 50px;
+    background-color: rgb(241, 241, 241);
+    border: none;
+    border-radius: 5px;
+}
+#input::placeholder
+{
+    font-weight: bold;
+}
+#input:focus
+{
+    outline: none;
+}
 
 /* ----------------------------- MEDIA QUERY --------------------------- */
 

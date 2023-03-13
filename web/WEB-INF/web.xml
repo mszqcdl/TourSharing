@@ -40,4 +40,12 @@
         <servlet-name>FaRouteServlet</servlet-name>
         <url-pattern>/favourite</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddRouteServlet</servlet-name>
+        <servlet-class>Servlet.AddRouteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddRouteServlet</servlet-name>
+        <url-pattern>/addroute</url-pattern>
+    </servlet-mapping>
 </web-app>

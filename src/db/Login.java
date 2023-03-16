@@ -20,6 +20,15 @@ public class Login {
 //    }
     public int login(String inputUrn,String inputPwd) throws Exception {
         // TODO Auto-generated method stub
+        if (inputUrn.equals("Administrator")){
+            System.out.println("Administrator");
+            if (inputPwd.equals("Toursharepwd")){
+                return 2;
+            }
+            else{
+                return 0;
+            }
+        }
         int flag = 0;
         String sql = "select * from User where idUser = '"+inputUrn+"';";
         PreparedStatement pstmt = null ;

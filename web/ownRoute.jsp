@@ -106,14 +106,6 @@
             let rName = document.createTextNode(route.name);
             h2.appendChild(rName);
 
-            let btholder = document.createElement("div");
-            let bt1 = document.createElement("button2");
-            bt1.insertAdjacentHTML('beforeend', '<i class="fa fa-trash" style="font-size:20px;color:#5bc0de;background:#ffffff;border-style:none;" title="delete"></i>');
-            btholder.appendChild(bt1);
-            let bt2 = document.createElement("button1");
-            bt2.insertAdjacentHTML('beforeend', '<i class="fa fa-file" style="font-size:20px;color:#5bc0de;background:#ffffff;border-style:none;" title="modify"></i>');
-            btholder.appendChild(bt2);
-            btholder.insertAdjacentHTML('beforeend', '<i style="background:#ffffff;"></i>');
 
 
             boxDiv.appendChild(boxLink);
@@ -121,7 +113,6 @@
             detailsDiv.appendChild(h3);
             detailsDiv.appendChild(h4);
             detailsDiv.appendChild(h2);
-            detailsDiv.appendChild(btholder);
 
             return boxDiv;
         }

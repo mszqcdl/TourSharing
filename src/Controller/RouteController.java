@@ -209,6 +209,7 @@ public class RouteController {
         //DELETE FROM `journey`.`Route` WHERE (`idRoute` = '1');
         String sql = "DELETE FROM `journey`.`Route` WHERE (`idRoute` = '"+idRoute+"');";
         PreparedStatement pstmt = null ;
+        System.out.println("delete here");
         // database
         try{
             // connect
@@ -223,12 +224,13 @@ public class RouteController {
 
     //Alter route
     public boolean alterRoute(Route route){
-        //UPDATE `journey`.`Route` SET `idRoute` = '1002CN', `routeName` = 'Disneyland', `location` = 'Shanghai', `description` = 'Incredible trip', `User_idUser` = 'Ceci' WHERE (`idRoute` = '1001CN');
-        String sql = "UPDATE `journey`.`Route` SET `routeName` = '"+route.getRouteName()+"', `location` = '"+route.getLocation()+"', `description` = '"+route.getDescription()+"', `User_idUser` = '"+route.getIdUser()+"' WHERE (`idRoute` = '"+route.getIdRoute()+"');";
+        //UPDATE `journey`.`route` SET `routeName` = 'rtt', `location` = 'rtt', `description` = 'rtt' WHERE (`idRoute` = '1001');
+        String sql = "UPDATE `journey`.`Route` SET `routeName` = '"+route.getRouteName()+"', `location` = '"+route.getLocation()+"', `description` = '"+route.getDescription()+"' WHERE (`idRoute` = '"+route.getIdRoute()+"');";
         PreparedStatement pstmt = null ;
         // database
         try{
             // connect
+            System.out.println("Modify...");
             pstmt = dbc.getConnection().prepareStatement(sql) ;
             pstmt.executeUpdate();
             return true;

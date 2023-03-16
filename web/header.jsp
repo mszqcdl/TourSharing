@@ -29,7 +29,7 @@
             </div>
             <!-- SEARCH SECTION -->
             <div id="search">
-                <input type="text" id="input" name="location" placeholder="Input location searching routes" required>
+                <input type="text" id="input" name="location" placeholder="Input location searching routes">
                 <input type = "submit" value = "Search" class = "button1">
             </div>
             <!-- USER SECTION (CART AND USER ICON) -->

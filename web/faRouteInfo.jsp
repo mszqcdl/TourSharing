@@ -42,6 +42,15 @@
 
         /* 加载地图 */
         function initialize() {
+            let boxDiv = document.getElementById("mapMainContainer");
+            let para = document.createElement('p')
+            var routeId = document.createElement("input")
+            routeId.name='routeId'
+            routeId.type='text'
+            routeId.value=location.search.split('?')[1];
+            para.appendChild(routeId)
+            para.hidden=true
+            boxDiv.appendChild(para)
             let rId = location.search.split('?')[1];
             alert(rId);
             <%ExtractPoints extractPoints = new ExtractPoints("");
@@ -98,24 +107,12 @@
             }
 
         }
-        function deleteFR(){
-            <%Login login = new Login();
-            FaRouteController faRouteController = new FaRouteController();
-            if (login.getUserID()==null){%>
-            alert("Guests cannot access this part. Please log in.");
-            <%
-            }
-            else if(faRouteController.searchFaRoute(login.getUserID(),request.getQueryString())==false){%>
-            alert("There is no such route in the favourite list.");
-            <%} else{
-                    faRouteController.deleteRoute(new FaRoute(login.getUserID(),request.getQueryString()));
-                }%>
-        }
 
     </script>
 </head>
 
 <body onload="initialize()">
+<form action="FaRInfoServlet" method="post">
 <!-- HEADER -->
 <div id="1"></div>
 <script>
@@ -129,8 +126,8 @@
     }
 </script>
 <div id="mapMainContainer">
+
     <!-- JS rendered code -->
-    <form action="RouteInfoServlet" method="post">
         <div>
             <div id="description" style="height:600px;width:247.34px;float:left;">
                 <b><%=session.getAttribute("rname")%></b>
@@ -138,13 +135,13 @@
                 <br>
                 <%=session.getAttribute("description")%>
                 <br>
-                <input id="addFaList" type = "button" value = "Delete" class = "button2" onclick="deleteFR()">
+                <input id="addFaList" type = "submit" value = "Delete" class = "button2">
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>
-    </form>
-</div>
 
+</div>
+</form>
 </body>
 </html>
 

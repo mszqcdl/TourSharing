@@ -42,6 +42,9 @@ public class LoginServlet extends HttpServlet {
                     HttpSession session=req.getSession();
                     res.getWriter().print("<script language=javascript>alert('The password or user name is wrong! ');window.location='./Login.jsp'</script>");
                 }
+                else if (result==2){
+                    res.getWriter().print("<script language=javascript>window.location='./index.jsp'</script>");
+                }
                 else if (result==1){
                     HttpSession session=req.getSession();
 

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="Controller.RouteController" %>
+<%@ page import="Entity.Route" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +29,26 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <%RouteController routeController = new RouteController();
         String rid = routeController.searchMax();
-        session.setAttribute("rid",rid);%>
+        session.setAttribute("rid",rid);
+        Route route = routeController.searchId(request.getQueryString());
+    %>
     <script type="text/javascript" >
         function initialize(){
+            let rId = location.search.split('?')[1];
+            alert(rId)
             var contentDetails="Hello";
             console.log('connected!!');
             {
                 console.log(contentDetails);
-                dynamicContentDetails()
+                dynamicContentDetails(rId)
             }
         }
-        function dynamicContentDetails()
+        function dynamicContentDetails(rId)
         {
+
+            var routeName = "<%=route.getRouteName()%>"
+            var routeLoc = "<%=route.getLocation()%>"
+            var routeDes = "<%=route.getDescription()%>"
             let mainContainer = document.createElement('div')
             mainContainer.id = 'containerD'
             document.getElementById('containerProduct').appendChild(mainContainer);
@@ -67,6 +76,7 @@
             var rname = document.createElement("input")
             rname.id='rname'
             rname.name='rname'
+            rname.value=routeName
             rname.setAttribute("required","true")
             h1.appendChild(h1Text)
             h1.appendChild(rname)
@@ -80,6 +90,7 @@
             var loc = document.createElement("input")
             loc.id='loc'
             loc.name='loc'
+            loc.value=routeLoc;
             loc.setAttribute("required","true")
             h3DetailsDiv.appendChild(h3DetailsText)
             h3DetailsDiv.appendChild(loc)
@@ -93,6 +104,7 @@
             var des = document.createElement("input")
             des.id='des'
             des.name='des'
+            des.value=routeDes
             para.appendChild(paraText)
             para.appendChild(des)
 
@@ -100,8 +112,7 @@
             productPreviewDiv.id = 'productPreview'
 
             let h3ProductPreviewDiv = document.createElement('h3')
-            var rid = "<%=rid%>"
-            let h3ProductPreviewText = document.createTextNode('Route id (The name of the GPX file): '+rid)
+            let h3ProductPreviewText = document.createTextNode('Route id (The name of the GPX file): '+rId)
             h3ProductPreviewDiv.appendChild(h3ProductPreviewText)
             productPreviewDiv.appendChild(h3ProductPreviewDiv)
 
@@ -113,8 +124,8 @@
             let buttonTag = document.createElement('input')
             buttonTag.type="submit"
             buttonTag.class="button1"
-            buttonTag.style="margin-top: 5px;width: 180px;height: 30px;border-width: 0px;border-radius: 1px;background: #4cd374;cursor: pointer;outline: none; font-family: Microsoft YaHei;color: white;font-size: 17px;opacity: 0.6;"
-            buttonTag.value='Create new route'
+            buttonTag.style="margin-top: 5px;width: 120px;height: 30px;border-width: 0px;border-radius: 1px;background: #4cd374;cursor: pointer;outline: none; font-family: Microsoft YaHei;color: white;font-size: 17px;opacity: 0.6;"
+            buttonTag.value='Confirm'
             buttonDiv.appendChild(buttonTag)
 
 
@@ -129,6 +140,14 @@
             detailsDiv.appendChild(h3)
             detailsDiv.appendChild(para)
             productDetailsDiv.appendChild(productPreviewDiv)
+            let param = document.createElement('p')
+            var routeId = document.createElement("input")
+            routeId.name='routeId'
+            routeId.type='text'
+            routeId.value=rId;
+            param.appendChild(routeId)
+            param.hidden=true
+            productDetailsDiv.appendChild(param)
 
 
             productDetailsDiv.appendChild(buttonDiv)
@@ -153,7 +172,7 @@
         document.getElementById(1).innerHTML = req.responseText;
     }
 </script>
-<form action="AddRouteServlet" method="post" enctype="multipart/form-data">
+<form action="ModifyRouteServlet" method="post" enctype="multipart/form-data">
     <div id="containerProduct">
         <!-- JS rendered code -->
 

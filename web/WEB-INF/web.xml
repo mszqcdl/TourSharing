@@ -6,24 +6,25 @@
     <welcome-file-list>
         <welcome-file>/Login.jsp</welcome-file>
     </welcome-file-list>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlet.LoginServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>Servlet.RegisterServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ContentServlet</servlet-name>
         <servlet-class>Servlet.ContentServlet</servlet-class>
@@ -32,6 +33,7 @@
         <servlet-name>ContentServlet</servlet-name>
         <url-pattern>/content</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>FaRouteServlet</servlet-name>
         <servlet-class>Servlet.FaRouteServlet</servlet-class>
@@ -40,6 +42,7 @@
         <servlet-name>FaRouteServlet</servlet-name>
         <url-pattern>/favourite</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>AddRouteServlet</servlet-name>
         <servlet-class>Servlet.AddRouteServlet</servlet-class>
@@ -47,5 +50,41 @@
     <servlet-mapping>
         <servlet-name>AddRouteServlet</servlet-name>
         <url-pattern>/addroute</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OwnRInfoServlet</servlet-name>
+        <servlet-class>Servlet.OwnRouteInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OwnRInfoServlet</servlet-name>
+        <url-pattern>/ownRouteInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModifyRouteServlet</servlet-name>
+        <servlet-class>Servlet.OwnRouteInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModifyRouteServlet</servlet-name>
+        <url-pattern>/modifyRoute</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FaRInfoServlet</servlet-name>
+        <servlet-class>Servlet.FaRouteInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FaRInfoServlet</servlet-name>
+        <url-pattern>/favouriteRouteInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RouteInfoServlet</servlet-name>
+        <servlet-class>Servlet.RouteInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RouteInfoServlet</servlet-name>
+        <url-pattern>/routeInfo</url-pattern>
     </servlet-mapping>
 </web-app>

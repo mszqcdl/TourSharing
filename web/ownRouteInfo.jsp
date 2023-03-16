@@ -42,6 +42,17 @@
 
         /* 加载地图 */
         function initialize() {
+            let boxDiv = document.getElementById("mapMainContainer");
+            let para = document.createElement('p')
+            var routeId = document.createElement("input")
+            routeId.name='routeId'
+            routeId.type='text'
+            routeId.value=location.search.split('?')[1];
+            para.appendChild(routeId)
+            para.hidden=true
+            boxDiv.appendChild(para)
+
+            alert(routeId.value)
             let rId = location.search.split('?')[1];
             alert(rId);
             <%ExtractPoints extractPoints = new ExtractPoints("");
@@ -98,28 +109,16 @@
             }
 
         }
-        function deleteR(){
-            <%Login login = new Login();
-            RouteController routeController1 = new RouteController();
-            if (login.getUserID()==null){%>
-            alert("Guests cannot access this part. Please log in.");
-            <%
-            }
-            else if(routeController1.searchIds(login.getUserID(),request.getQueryString())==false){%>
-            alert("You didin't create such route!");
-            <%} else{
-                    routeController.deleteRoute(request.getQueryString());
-                    FaRouteController faRouteController = new FaRouteController();
-                    faRouteController.deleteRouterid(request.getQueryString());
-                }%>
-        }
+
         function modify(){
-            window.location.href = "modifyRoute.jsp";
+            let rId = location.search.split('?')[1];
+            window.location.href = "modifyRoute.jsp?"+rId;
         }
     </script>
 </head>
 
 <body onload="initialize()">
+<form action="OwnRInfoServlet" method="post">
 <!-- HEADER -->
 <div id="1"></div>
 <script>
@@ -134,7 +133,6 @@
 </script>
 <div id="mapMainContainer">
     <!-- JS rendered code -->
-    <form action="RouteInfoServlet" method="post">
         <div>
             <div id="description" style="height:600px;width:247.34px;float:left;">
                 <b><%=session.getAttribute("rname")%></b>
@@ -142,14 +140,16 @@
                 <br>
                 <%=session.getAttribute("description")%>
                 <br>
-                <input id="addFaList" type = "button" value = "Delete" class = "button2" onclick="deleteR()">
-                <input type="submit" value="Modify" class="button2" onclick="modify()">
+
+                <input type = "submit" value = "Delete" class = "button2">
+
+                <input type="button" value="Modify" class="button2" onclick="modify()">
 
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>
-    </form>
 </div>
 
+</form>
 </body>
 </html>

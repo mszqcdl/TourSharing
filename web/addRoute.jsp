@@ -43,6 +43,7 @@
             imgTag.type="file"
             imgTag.accept=".gpx"
             imgTag.name = "GPXFile"
+            imgTag.required=true
             imgTag.title="Pleas upload GPX file"
             imgTag.formEnctype="multipart/form-data"
 

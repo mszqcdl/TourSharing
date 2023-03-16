@@ -1,4 +1,7 @@
 package db;
+import Controller.RouteController;
+import Entity.Route;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -37,9 +40,6 @@ public class DBConnect {
 //
 //        Login login = new Login();
 //        System.out.println(login.login("Cecilia","1234567"));
-        Integer tmp = Integer.parseInt("1001");
-        Integer tmp1 = Integer.getInteger("1000");
-        System.out.println(tmp);
-        System.out.println(tmp1);
+        new RouteController().alterRoute(new Route("1001","CC","BM","Cecilia","E"));
     }
 }

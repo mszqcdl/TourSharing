@@ -43,7 +43,27 @@ public class LoginServlet extends HttpServlet {
                     res.getWriter().print("<script language=javascript>alert('The password or user name is wrong! ');window.location='./Login.jsp'</script>");
                 }
                 else if (result==2){
-                    res.getWriter().print("<script language=javascript>window.location='./index.jsp'</script>");
+                    HttpSession session=req.getSession();
+                    RouteController routeController = new RouteController();
+                    ArrayList<Route> routes = routeController.searchAll();
+                    String locations = "";
+                    String ids = "";
+                    String names = "";
+                    String descriptions = "";
+                    for (int i=0;i<routes.size();i++){
+                        locations = locations+routes.get(i).getLocation()+",";
+                        ids = ids+routes.get(i).getIdRoute()+",";
+                        names = names+routes.get(i).getRouteName()+",";
+                        descriptions = descriptions+routes.get(i).getDescription()+",,";
+                        //routes[i] = new Route(routes.get(i).getIdRoute(),routesList.get(i).getRouteName(),routesList.get(i).getLocation(),routesList.get(i).getIdUser(),routesList.get(i).getDescription());
+                    }
+                    session.setAttribute("names",names.substring(0,names.length()-1));
+                    session.setAttribute("ids",ids.substring(0,ids.length()-1));
+                    session.setAttribute("descriptions",descriptions.substring(0,descriptions.length()-1));
+                    session.setAttribute("locations",locations.substring(0,locations.length()-1));
+                    System.out.println(locations);
+                    res.sendRedirect("./routeManage.jsp");
+                    //res.getWriter().print("<script language=javascript>window.location='./routeManage.jsp'</script>");
                 }
                 else if (result==1){
                     HttpSession session=req.getSession();

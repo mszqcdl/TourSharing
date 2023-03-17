@@ -64,7 +64,7 @@
             imgTag.insertAdjacentHTML('beforeend', '<i class="fa-regular fa-file-circle-plus" style="font-size:200px;color:#5bc0de;background:#ffffff;border-style:none" title="delete"></i>');
 
 
-            imageSectionDiv.appendChild(imgTag)
+            //imageSectionDiv.appendChild(imgTag)
 
             let productDetailsDiv = document.createElement('div')
             productDetailsDiv.id = 'productDetails'
@@ -147,6 +147,7 @@
             routeId.value=rId;
             param.appendChild(routeId)
             param.hidden=true
+            productPreviewDiv.appendChild(imgTag)
             productDetailsDiv.appendChild(param)
 
 

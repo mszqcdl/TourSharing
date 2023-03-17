@@ -106,21 +106,21 @@
 </head>
 
 <body onload="initialize()">
-<form action="RouteInfoServlet" method="post">
-<!-- HEADER -->
-<div id="1"></div>
-<script>
-    load("header.jsp");
-    function load(url)
-    {
-        req = new XMLHttpRequest();
-        req.open("GET", url, false);
-        req.send(null);
-        document.getElementById(1).innerHTML = req.responseText;
-    }
-</script>
-<div id="mapMainContainer">
-    <!-- JS rendered code -->
+<form action="RouteInfoMServlet" method="post">
+    <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("headerM.jsp");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+    <div id="mapMainContainer">
+        <!-- JS rendered code -->
 
         <div>
             <div id="description" style="height:600px;width:247.34px;float:left;">
@@ -129,15 +129,12 @@
                 <br>
                 <%=session.getAttribute("description")%>
                 <br>
-                <br>
-                <b>Copy the URL to share</b>
-                <br>
-                <input id="addFaList" type = "submit" value = "Add to Favourite List" class = "button2">
+                <input id="deleteFaList" type = "submit" value = "Delete" class = "button2">
             </div>
             <div id="map_canvas" style="width:900px; height:500px;float: right;"></div>
         </div>
 
-</div>
+    </div>
 </form>
 </body>
 </html>

@@ -48,7 +48,7 @@
             imgTag.formEnctype="multipart/form-data"
 
 
-            imageSectionDiv.appendChild(imgTag)
+            //imageSectionDiv.appendChild(imgTag)
 
             let productDetailsDiv = document.createElement('div')
             productDetailsDiv.id = 'productDetails'
@@ -59,6 +59,7 @@
             let h1Text = document.createTextNode("Route name: ")
             var rname = document.createElement("input")
             rname.name='rname'
+            rname.id='input'
             rname.setAttribute("required","true")
             h1.appendChild(h1Text)
             h1.appendChild(rname)
@@ -71,6 +72,7 @@
             let h3DetailsText = document.createTextNode('Location: ')
             var loc = document.createElement("input")
             loc.name='loc'
+            loc.id='input'
             loc.setAttribute("required","true")
             h3DetailsDiv.appendChild(h3DetailsText)
             h3DetailsDiv.appendChild(loc)
@@ -84,6 +86,7 @@
             var des = document.createElement("input")
             des.name='des'
             des.type='text'
+            des.id='input'
             para.appendChild(paraText)
             para.appendChild(des)
 
@@ -120,6 +123,7 @@
             detailsDiv.appendChild(h3)
             detailsDiv.appendChild(para)
             productDetailsDiv.appendChild(productPreviewDiv)
+            productDetailsDiv.appendChild(imgTag)
 
 
             productDetailsDiv.appendChild(buttonDiv)

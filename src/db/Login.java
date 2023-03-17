@@ -23,6 +23,7 @@ public class Login {
         if (inputUrn.equals("Administrator")){
             System.out.println("Administrator");
             if (inputPwd.equals("Toursharepwd")){
+                userID="Administrator";
                 return 2;
             }
             else{
